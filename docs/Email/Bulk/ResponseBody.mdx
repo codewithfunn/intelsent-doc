@@ -1,0 +1,60 @@
+---
+id: response-body
+title: Response Body
+---
+
+# 📩 Response Body
+
+:::info
+The response provides details about each email request, including status, tracking IDs, and error codes (if any).
+:::
+
+## 📌 Parameters
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="table" label="Parameters Table" default>
+
+| Name         | Type    | Sample Value | Description |
+| ------------ | ------- | ------------ | ----------- |
+| `isid`       | String  | `123-abc-xyz-679` | **IntelSend ID**: A unique identifier (`uuid`) returned in all responses. |
+| `parameters` | Array   | `[ { "uid": "abc-123", "to": "abc@gmail.com", "status": "QUEUED", "errorCode": 0 } ]` | List of results for each request. <br/>✔ **Success** → `"status": "QUEUED", "errorCode": 0` <br/>❌ **Error** → `"status": "REJECTED", "errorCode" > 0` (each error code corresponds to a specific failure reason). |
+| `from`       | String  | `info@xyz.com` | The sender email address (same as request). |
+| `uid`        | String  | `abc-123` | Unique request identifier (same as request). |
+| `programId`  | Integer | `12345` | Program identifier (same as request). |
+
+  </TabItem>
+
+  <TabItem value="json" label="Sample JSON">
+
+```json
+{
+  "isid": "123-abc-xyz-679",
+  "parameters": [
+    {
+      "uid": "abc-123",
+      "to": "abc@gmail.com",
+      "name": "Deepak",
+      "address": "1234",
+      "status": "QUEUED",
+      "errorCode": 0
+    },
+    {
+      "uid": "xyz-123",
+      "to": "xyz@outlook.com",
+      "name": "Jim",
+      "address": "5678",
+      "status": "REJECTED",
+      "errorCode": 2
+    }
+  ],
+  "from": "info@xyz.com",
+  "uid": "abc-123",
+  "programId": 12345
+}
+```
+
+  </TabItem>
+</Tabs>

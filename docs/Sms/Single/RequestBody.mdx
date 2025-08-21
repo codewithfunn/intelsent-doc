@@ -1,0 +1,53 @@
+---
+id: request-body
+title: Request Body
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
+
+# Request Body
+
+The request body defines the parameters required to send an SMS via the IntelSend API.
+
+---
+
+## Parameters
+
+| Name            | Type     | Required | Sample Value           | Description                                                                 |
+|-----------------|----------|----------|-----------------------|-----------------------------------------------------------------------------|
+| **to**          | String   | ✅ Yes   | 13233933379           | 11-digit valid US number.                                                  |
+| **from**        | String   | ✅ Yes   | 1234567890            | Assigned 10-digit DLC number or 6-digit Short code.                        |
+| **sandboxMode**  | Boolean  | ❌ No   | true                  | Use `true` for sandbox mode. Default: `false`.                             |
+| **body**        | String   | ✅ Yes   | SMS text              | Maximum 600 characters (plain English), 300 characters (Unicode).          |
+| **sendAt**      | DateTime | ❌ No   | 2024-11-01 11:00:00  | UTC timezone format `YYYY-MM-DD HH:mm:ss`. Default: current datetime.      |
+| **uid**         | String   | ❌ No   | abc-123               | Unique ID for tracking (up to 40 characters).                              |
+| **programId**   | Integer  | ✅ Yes   | 12345                 | 6-digit program ID for reporting and billing.                              |
+| **checkOptOut** | Boolean  | ❌ No   | true or false         | Default: `true`. If `false`, bypass opt-out check (long codes excluded).   |
+
+---
+
+## 🔎 Example JSON Payload
+
+<CodeBlock language="json">
+{`{
+  "to": "13233933379",
+  "from": "1234567890",
+  "sandboxMode": true,
+  "body": "Hi User, this is a test message",
+  "sendAt": "2024-11-01 11:00:00",
+  "uid": "abc-123",
+  "programId": 12345,
+  "checkOptOut": true
+}`}
+</CodeBlock>
+
+---
+
+<Admonition type="tip" title="Pro Tip 💡">
+Always use a **unique `uid`** for each request to avoid duplication and make tracking easier.
+</Admonition>
+
+<Admonition type="info" title="See Also">
+Refer to the [Examples](./examples.md) section for complete request/response samples.
+</Admonition>

@@ -1,0 +1,64 @@
+---
+id: response-body
+title: Response Body
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
+
+# 📤 Response Body
+
+When you send an email request, the API responds with the following fields:
+
+---
+
+## 📝 Parameters
+
+| Name        | Type    | Sample Value        | Description                                                                 |
+| ----------- | ------- | ------------------- | --------------------------------------------------------------------------- |
+| `isid`      | String  | `123-abc-xyz-679`   | **IntelSend ID**: Unique UUID returned in all responses.                     |
+| `status`    | String  | `QUEUED` / `REJECTED` | - **QUEUED** → Request is valid and queued for delivery. <br/> - **REJECTED** → Request body contained an error. |
+| `errorCode` | Integer | `0`                 | `0` = No error. Any other code represents a specific error condition.        |
+| `to`        | String  | `abc@gmail.com`     | Same as in request.                                                          |
+| `from`      | String  | `info@xyz.com`      | Same as in request.                                                          |
+| `uid`       | String  | `abc-123`           | Same as in request.                                                          |
+| `programId` | Integer | `12345`             | Same as in request.                                                          |
+
+---
+
+## ✅ Example Success Response
+
+<CodeBlock language="json">
+{`{
+  "isid": "123-abc-xyz-679",
+  "status": "QUEUED",
+  "errorCode": 0,
+  "to": "abc@gmail.com",
+  "from": "info@xyz.com",
+  "uid": "abc-123",
+  "programId": 12345
+}`}
+</CodeBlock>
+
+---
+
+## ❌ Example Error Response
+
+<CodeBlock language="json">
+{`{
+  "isid": "123-abc-xyz-679",
+  "status": "REJECTED",
+  "errorCode": 102,
+  "to": "invalid_email",
+  "from": "info@xyz.com",
+  "uid": "abc-123",
+  "programId": 12345
+}`}
+</CodeBlock>
+
+---
+
+<Admonition type="note" title="Note">
+The `errorCode` helps identify **why** a request failed.  
+Refer to the **Error Codes** section for a complete list of possible values.
+</Admonition>

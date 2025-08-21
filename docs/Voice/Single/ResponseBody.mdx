@@ -1,0 +1,47 @@
+---
+id: response-body
+title: Response Body
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
+
+# Response Body
+
+The response body provides details about the result of a single voice message request.
+
+---
+
+## Parameters
+
+| Name        | Type    | Sample Value         | Description                                                                                     |
+| ----------- | ------- | ------------------- | ----------------------------------------------------------------------------------------------- |
+| `isid`      | String  | `123-abc….-679`      | Unique IntelSend ID returned for each request.                                                 |
+| `status`    | String  | `QUEUED`, `REJECTED` | Request status. `QUEUED` if successful; `REJECTED` if there is an error in the request.       |
+| `errorCode` | Integer | `0`                  | `0`: No error. Non-zero values indicate specific error conditions.                             |
+| `to`        | String  | `13233933379`        | Recipient number (same as in the request).                                                     |
+| `from`      | String  | `1234567890`         | Sender number (same as in the request).                                                       |
+| `uid`       | String  | `abc-123`            | Unique identifier for tracking (same as in the request).                                       |
+| `programId` | Integer | `12345`              | Program ID used to group requests (same as in the request).                                    |
+
+---
+
+## 🔎 Example JSON Response
+
+<CodeBlock language="json">
+{`{
+  "isid": "123-abc-456-789",
+  "status": "QUEUED",
+  "errorCode": 0,
+  "to": "13233933379",
+  "from": "1234567890",
+  "uid": "abc-123",
+  "programId": 12345
+}`}
+</CodeBlock>
+
+---
+
+<Admonition type="tip" title="Pro Tip 💡">
+Check both the `status` and `errorCode` fields for each request to handle success and failure programmatically. The `uid` can be used to track individual requests.
+</Admonition>

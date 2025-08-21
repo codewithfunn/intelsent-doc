@@ -5,26 +5,331 @@
  */
 
 /* You can override the default Infima variables here. */
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  /* theme variables */
+  --theme-color-blue: #00264c;
+  --theme-color-blue-light: #6caedf;
+  --theme-color-blue-lightest: #89bee5;
+  --theme-color-blue-dark1: #2979b3;
+  --theme-color-blue-dark2: #3a91d4;
+  --theme-color-green: #7ac142;
+  --theme-color-green-light: #d7ffb8;
+  --theme-color-red: #f13b60;
+  --theme-color-red-light: #dc143c;
+  --theme-font: "Roboto", serif;
+  /* dynamic variables */
+  --theme-color-invert: #000000;
+  --theme-color-base: #1c1e21;
+  --theme-color-active: var(--theme-color-blue);
+  --theme-color-hover: var(--theme-color-blue-light);
+  --theme-color-link: var(--theme-color-blue-dark1);
+  --theme-color-tag: var(--ifm-color-primary);
+  --theme-color-divider: rgba(0, 0, 0, 0.1);
+  --theme-color-success: var(--theme-color-green);
+  --theme-color-info: var(--theme-color-blue-light);
+  --theme-color-warning: #ff9c07;
+  --theme-color-error: var(--theme-color-red-light);
+  --docsearch-muted-color: rgba(51, 51, 51, 0.8) !important;
+  --ifm-footer-background-color: var(--theme-color-blue);
+  /* ifm variables */
+  --ifm-font-family-base: var(--theme-font);
+  --ifm-font-color-base: var(--theme-color-base);
+  --ifm-color-success: var(--theme-color-success);
+  --ifm-color-info: var(--theme-color-info);
+  --ifm-color-warning: var(--theme-color-warning);
+  --ifm-color-danger: var(--theme-color-error);
+  --ifm-heading-color: var(--theme-color-active);
+  --ifm-link-color: var(--theme-color-link);
+  --ifm-link-hover-color: var(--theme-color-hover);
+  --ifm-color-primary: var(--theme-color-active);
+  --ifm-color-primary-dark: var(--theme-color-active);
+  --ifm-color-primary-darker: var(--theme-color-active);
+  --ifm-color-primary-darkest: var(--theme-color-active);
+  --ifm-color-primary-light: var(--theme-color-active);
+  --ifm-color-primary-lighter: var(--theme-color-active);
+  --ifm-color-primary-lightest: var(--theme-color-active);
+  --ifm-pagination-nav-color-hover: var(--theme-color-hover);
+  --ifm-breadcrumb-size-multiplier: 0.875;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-footer-color: #f5f5f5;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+[data-theme="dark"] {
+  --theme-color-invert: #ffffff;
+  --theme-color-base: #f5f5f5;
+  --theme-color-active: var(--theme-color-blue-light);
+  --theme-color-link: var(--theme-color-blue-dark2);
+  --theme-color-tag: var(--theme-color-blue-dark1);
+  --theme-color-divider: rgba(255, 255, 255, 0.2);
+  --theme-color-error: var(--theme-color-red);
+  --docsearch-muted-color: rgba(200, 200, 200) !important;
+  --ifm-navbar-background-color: #171717;
+  --ifm-footer-background-color: #171717;
+}
+
+/* Web elements */
+main h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+main h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+main h2::after {
+  content: "";
+  display: block;
+  margin-top: 0px;
+  border-top: 1px solid var(--theme-color-divider);
+}
+h2.anchor#responses::after {
+  content: none;
+  display: none;
+}
+.openapi-tabs__response-header-section {
+  border-bottom: 1px solid var(--theme-color-divider);
+}
+hr {
+  background-color: var(--theme-color-divider);
+}
+main h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--theme-color-invert);
+}
+main h4 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--theme-color-invert);
+}
+main h5 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--theme-color-invert);
+}
+main p {
+  font-size: 1rem;
+}
+main p a {
+  text-decoration: underline;
+}
+main table {
+  width: 100% !important;
+  display: inline-table;
+}
+main table th {
+  text-align: left;
+}
+main table td {
+  word-break: break-all;
+}
+main .col.markdown {
+  max-width: inherit;
+  overflow-x: auto;
+  padding-bottom: 20px;
+  margin-bottom: -20px;
+}
+
+/* Navbar */
+.navbar__logo {
+  height: 2.5rem;
+}
+.navbar__brand {
+  margin-right: 0px;
+}
+.navbar__item {
+  font-size: 20px !important;
+}
+
+/* Breadcrumbs */
+.breadcrumbs__item--active span {
+  color: var(--theme-color-active) !important;
+  font-weight: bold !important;
+}
+.breadcrumbs__link {
+  padding: 2px 10px;
+  font-size: 14px;
+}
+
+/* Theme switch icons */
+svg[class^="lightToggleIcon"] {
+  display: none !important;
+}
+svg[class^="darkToggleIcon"] {
+  display: inline !important;
+}
+[data-theme="dark"] {
+  svg[class^="lightToggleIcon"] {
+    display: inline !important;
+  }
+  svg[class^="darkToggleIcon"] {
+    display: none !important;
+  }
+}
+
+/* Side menu */
+.menu__link--active {
+  font-weight: bold !important;
+}
+.menu__list-item-collapsible:has(.menu__link--active) {
+  background-color: var(--ifm-menu-color-background-active);
+}
+
+/* Table of content */
+@media (min-width: 1000px) {
+  .table-of-contents::before {
+    content: "On This Page";
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--ifm-color-primary);
+    display: block;
+    margin-left: 6px;
+  }
+}
+.table-of-contents li .toc-highlight {
+  font-size: 16px;
+}
+.table-of-contents li > ul > li .toc-highlight {
+  font-size: 14px;
+}
+.toc-highlight:hover {
+  color: var(--theme-color-hover);
+}
+.table-of-contents__link--active {
+  font-weight: bold;
+}
+.table-of-contents
+  li:has(ul li .table-of-contents__link--active)
+  > a.table-of-contents__link {
+  color: var(--ifm-color-primary);
+  font-weight: bold;
+}
+
+/* Custom classes */
+.hero__title {
+  color: #ffffff;
+}
+.hero__subtitle {
+  color: #ffffff;
+}
+
+/* Doc styling */
+.theme-code-block
+  button:not(.openapi-tabs__code-container .theme-code-block button) {
+  /* set code block buttons like copy code to always visible (except OpenApi code blocks) */
+  /* (default behaviour is partially visible on code block hover and fully visible on button hover) */
+  opacity: 0.75;
+}
+.openapi-tabs__code-container
+  .openapi-explorer__code-block-content:hover
+  button {
+  /* improve visibility of buttons on code block hover  */
+  opacity: 0.75 !important;
+}
+.openapi-tabs__code-container
+  .openapi-explorer__code-block-content
+  button:hover {
+  /* improve visibility of buttons on code block hover  */
+  opacity: 1 !important;
+}
+
+/* Next/Previous buttons */
+.pagination-nav__link {
+  padding: 1.5rem !important;
+}
+.pagination-nav__label {
+  position: relative;
+  top: -22px;
+  color: var(--theme-color-blue-dark1);
+}
+[data-theme="dark"] .pagination-nav__label {
+  color: var(--theme-color-blue-light);
+}
+.pagination-nav__sublabel {
+  position: relative;
+  top: 24px;
+  padding: 0px 12px;
+  font-size: 14px;
+}
+.pagination-nav {
+  /* workaround for table of content active heading issues */
+  margin-bottom: calc(100vh - 300px);
+}
+
+/* Sidebar Method labels */
+.openapi-schema__required {
+  font-size: 14px !important;
+}
+.api-method > .menu__link {
+  align-items: center;
+  justify-content: start;
+}
+.api-method > .menu__link::before {
+  width: 50px;
+  height: 20px;
+  font-size: 12px;
+  line-height: 20px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  border: 1px solid;
+  margin-right: var(--ifm-spacing-horizontal);
+  text-align: center;
+  flex-shrink: 0;
+  border-color: transparent;
+  color: white;
+}
+
+/* Open API */
+button.openapi-explorer__request-btn {
+  background-color: var(--theme-color-blue-dark1) !important;
+}
+button.openapi-explorer__request-btn:hover {
+  background-color: var(--theme-color-green) !important;
+}
+.openapi-tabs__response-code-item {
+  background-color: var(--theme-color-tag) !important;
+}
+.openapi-schema__type,
+.openapi-schema__name {
+  opacity: 0.75 !important;
+}
+.openapi-explorer__floating-btn button {
+  /* hide edit button for request url */
+  display: none;
+}
+.badge--success {
+  --ifm-badge-background-color: var(--ifm-color-primary) !important;
+  --ifm-badge-border-color: var(--ifm-color-primary) !important;
+}
+[data-theme="dark"] .badge--success {
+  --ifm-badge-background-color: var(--theme-color-blue-dark1) !important;
+  --ifm-badge-border-color: var(--theme-color-blue-dark1) !important;
+}
+
+/* Api tags */
+.get > .menu__link::before {
+  content: "get";
+  background-color: var(--theme-color-tag);
+}
+.put > .menu__link::before {
+  content: "put";
+  background-color: var(--theme-color-tag);
+}
+.post > .menu__link::before {
+  content: "post";
+  background-color: var(--theme-color-tag);
+}
+.delete > .menu__link::before {
+  content: "del";
+  background-color: var(--openapi-code-red);
+}
+.patch > .menu__link::before {
+  content: "patch";
+  background-color: var(--openapi-code-orange);
 }

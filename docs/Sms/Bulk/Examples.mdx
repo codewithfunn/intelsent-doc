@@ -1,0 +1,89 @@
+---
+id: examples
+title: Examples
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Admonition from '@theme/Admonition';
+
+# Examples
+
+## ✅ Sample Request
+
+<CodeBlock language="json">
+{`{
+  "parameters": [
+    {
+      "uid": "abc-123",
+      "to": "13233933379",
+      "name": "Deepak",
+      "address": "1234"
+    },
+    {
+      "uid": "xyz-123",
+      "to": "19495790525",
+      "name": "Jim",
+      "address": "1234"
+    }
+  ],
+  "from": "1234567890",
+  "templateId": 10,
+  "sendAt": "",
+  "packet_uid": "",
+  "programId": 12345,
+  "checkOptOut": "",
+  "sandboxMode": false,
+  "useDraftTemplate": false
+}`}
+</CodeBlock>
+
+---
+
+## 📩 Sample Response
+
+<CodeBlock language="json">
+{`{
+  "isid": "xxxx...xxxx",
+  "templateId": 10,
+  "parameters": [
+    {
+      "uid": "abc-123",
+      "to": "13233933379",
+      "name": "Deepak",
+      "address": "1234",
+      "status": "QUEUED",
+      "errorCode": 0
+    },
+    {
+      "uid": "xyz-123",
+      "to": "19495790525",
+      "name": "Jim",
+      "address": "1234",
+      "status": "REJECTED",
+      "errorCode": 2
+    }
+  ],
+  "from": "1234567890",
+  "uid": "",
+  "programId": ""
+}`}
+</CodeBlock>
+
+---
+
+## ⚠️ Error Codes
+
+| Code | Description               |
+| ---- | ------------------------- |
+| 0    | ✅ No error               |
+| 1    | ❌ Invalid `to` number    |
+| 2    | ❌ Invalid `from` number  |
+| 3    | ❌ Missing required fields|
+| 4    | ❌ Exceeded character limit|
+| 5    | ❌ Invalid `programId`    |
+
+<Admonition type="note" title="Note">
+Always validate your request parameters before sending to avoid common errors.
+</Admonition>

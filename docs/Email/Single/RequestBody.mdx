@@ -1,0 +1,53 @@
+---
+id: request-body
+title: Request Body
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
+
+#  Request Body
+
+The request body defines the parameters required to send an email via the API.
+
+---
+
+## 📝 Parameters
+
+| Name          | Type     | Required | Sample Value                | Description                                                                                                                                        |
+| ------------- | -------- | -------- | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `from`        | String   | ✅ Yes   | `abc@gmail.com`             | Valid sender email address.                                                                                                                        |
+| `subject`     | String   | ✅ Yes   | `Email subject`             | Subject line of the email.                                                                                                                         |
+| `bodyText`    | String   | ✅ Yes   | `Plain text for email body` | Text version of the email body (displayed if recipient’s device cannot render HTML).                                                               |
+| `bodyHtml`    | String   | ✅ Yes   | `<p>Hello</p>`              | Main content of the email in **HTML format**.                                                                                                      |
+| `sendAt`      | DateTime | ❌ No    | `2024-11-01 11:00:00`       | Datetime in format `YYYY-MM-DD HH:mm:ss` (UTC, 24-hour). Defaults to **current datetime**.                                                         |
+| `uid`         | String   | ✅ Yes   | `abc-123`                   | Unique ID (max 40 chars). Returned in response for tracking. Must be unique per request.                                                            |
+| `programId`   | Integer  | ✅ Yes   | `12345`                     | Max **6 digits**. Used to group requests for reporting & billing.                                                                                   |
+| `checkOptOut` | Boolean  | ❌ No    | `true`                      | Defaults to **true**. If `true`, validates recipient against opt-out list. If `false`, bypasses opt-out check.                                     |
+
+---
+
+## 🔎 Example JSON Payload
+
+<CodeBlock language="json">
+{`{
+  "from": "abc@gmail.com",
+  "subject": "Welcome to IntelSend",
+  "bodyText": "Hello, this is the plain text body",
+  "bodyHtml": "<strong>Hello</strong>, this is the HTML body",
+  "sendAt": "2024-11-01 11:00:00",
+  "uid": "abc-123",
+  "programId": 12345,
+  "checkOptOut": true
+}`}
+</CodeBlock>
+
+---
+
+<Admonition type="tip" title="Pro Tip 💡">
+Use a **unique `uid`** for every request to avoid duplication and make tracking easier.
+</Admonition>
+
+<Admonition type="info" title="See Also">
+Refer to the [Examples](./Examples.md) section for complete request/response samples.
+</Admonition>

@@ -1,0 +1,65 @@
+---
+id: request-body
+title: Request Body
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
+
+# Request Body
+
+The request body defines the parameters required to send a single voice message via the IntelSend API.
+
+---
+
+## Parameters
+
+| Name             | Type      | Required | Sample Value         | Description                                                                                         |
+|------------------|-----------|----------|---------------------|-----------------------------------------------------------------------------------------------------|
+| `to`             | String    | ✅ Yes   | `13233933379`       | 11-digit valid US number.                                                                          |
+| `from`           | String    | ✅ Yes   | `1234567890`        | Assigned 10-digit Caller ID.                                                                       |
+| `liveMessage`    | String    | ✅ Yes   | Voice message       | Message for live call detection. Text-to-speech is applied.                                        |
+| `vmMessage`      | String    | ✅ Yes   | Voice message       | Message for machine call detection. Text-to-speech is applied.                                     |
+| `optOutMessage`  | String    | ❌ No    | Opt-out message     | Optional message played when the opt-out key is pressed.                                           |
+| `sendAt`         | DateTime  | ❌ No    | `2024-11-01 11:00:00` | UTC datetime format (`YYYY-MM-DD HH:mm:ss`). Default: current datetime.                            |
+| `uid`            | String    | ✅ Yes   | `abc-123`           | Unique identifier (max 40 characters) for tracking purposes.                                       |
+| `programId`      | Integer   | ✅ Yes   | `12345`             | 6-digit program ID for bundling requests for reporting and billing.                                |
+| `checkOptOut`    | Boolean   | ❌ No    | `true`              | Default: `true`. If `false`, opt-out checks are bypassed.                                          |
+| `maxRetry`       | Integer   | ❌ No    | `1`                 | Default: `0`. Number of retries if the voice message is not successfully delivered.                |
+| `retryAfter`     | Integer   | ❌ No    | `15`                | Minutes to wait after each retry (range: 5-60).                                                    |
+| `repeatKey`      | Integer   | ❌ No    | `-13`               | Default: `-13` (`#`). Key press to repeat the message (`0-9`, `-13` for `#`, `-6` for `*`).      |
+| `maxRepeat`      | Integer   | ❌ No    | `2`                 | Default: `1`. Number of times the message repeats when the repeat key is pressed.                 |
+| `optOutKey`      | Integer   | ❌ No    | `-13`               | Default: `-13` (`#`). Key press to opt out (`0-9`, `-13` for `#`, `-6` for `*`).                  |
+
+---
+
+## 🔎 Example JSON Payload
+
+<CodeBlock language="json">
+{`{
+  "to": "13233933379",
+  "from": "1234567890",
+  "liveMessage": "Hi User, this is a live call message. Press pound to repeat.",
+  "vmMessage": "Hi User, this is a voicemail message.",
+  "optOutMessage": "Press # to opt out.",
+  "sendAt": "2024-11-01 11:00:00",
+  "uid": "abc-123",
+  "programId": 12345,
+  "checkOptOut": true,
+  "maxRetry": 1,
+  "retryAfter": 15,
+  "repeatKey": -13,
+  "maxRepeat": 2,
+  "optOutKey": -13
+}`}
+</CodeBlock>
+
+---
+
+<Admonition type="tip" title="Pro Tip 💡">
+Always provide a unique `uid` for each request to avoid duplication and track each voice message effectively.
+</Admonition>
+
+<Admonition type="info" title="See Also">
+Refer to the [Examples](./examples.md) section for complete sample requests and responses.
+</Admonition>

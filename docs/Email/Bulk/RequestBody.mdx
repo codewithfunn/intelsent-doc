@@ -1,0 +1,63 @@
+---
+id: request-body
+title: Request Body
+---
+
+# Request Body
+
+:::info
+This section describes the parameters you can pass when making a request to the **IntelSend Email API**.
+:::
+
+## 📌 Parameters
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs>
+  <TabItem value="table" label="Parameters Table" default>
+
+| Name               | Type               | Required | Sample Value                                                                                                                      | Description                                                                                                                                    |
+| ------------------ | ------------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `templateId`       | Integer            | ✅ Yes   | `1..9999`                                                                                                                         | Numeric value of the template set via IntelSend admin portal.                                                                                  |
+| `sandboxMode`      | Boolean            | ❌ No    | `true`                                                                                                                            | Default: `false`. Sandbox mode allows sending emails only to whitelisted addresses.                                                            |
+| `useDraftTemplate` | Boolean            | ❌ No    | `false`                                                                                                                           | Default: `false`. If `true`, sends using the draft version of the template. Otherwise, the latest published version is used.                   |
+| `parameters`       | Array of key-value | ❌ No    | `[ { "uid": "abc-123", "to": "abc@gmail.com", "name": "Deepak" }, { "uid": "xyz-123", "to": "xyz@outlook.com", "name": "Jim" } ]` | Array of objects with key-value pairs. Keys are template variable names; values replace them dynamically. If no variables, array can be empty. |
+| `from`             | String             | ✅ Yes   | `info@xyz.com`                                                                                                                    | The **sender email address**. Must be assigned/approved.                                                                                       |
+| `sendAt`           | DateTime           | ❌ No    | `2024-11-01 11:00:00`                                                                                                             | Datetime format: `YYYY-MM-DD HH:mm:ss` (UTC). Default: current datetime.                                                                       |
+| `uid`              | String             | ✅ Yes   | `abc-123`                                                                                                                         | Unique identifier for tracking requests. Limit: 40 characters.                                                                                 |
+| `programId`        | Integer            | ✅ Yes   | `12345`                                                                                                                           | Program identifier (up to 6 digits). Used for grouping requests for **reporting and billing**.                                                 |
+| `checkDNC`         | Boolean            | ❌ No    | `true`                                                                                                                            | Default: `true`. If `false`, skips validation against the "Do Not Contact" list.                                                               |
+
+  </TabItem>
+
+  <TabItem value="json" label="Sample JSON">
+
+```json
+{
+  "templateId": 1234,
+  "sandboxMode": false,
+  "useDraftTemplate": false,
+  "parameters": [
+    {
+      "uid": "abc-123",
+      "to": "abc@gmail.com",
+      "name": "Deepak",
+      "address": "1234"
+    },
+    {
+      "uid": "xyz-123",
+      "to": "xyz@outlook.com",
+      "name": "Jim",
+      "address": "5678"
+    }
+  ],
+  "from": "info@xyz.com",
+  "sendAt": "2024-11-01 11:00:00",
+  "uid": "req-001",
+  "programId": 12345,
+  "checkDNC": true
+}
+```
+
+</TabItem> </Tabs>

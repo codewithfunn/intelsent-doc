@@ -1,0 +1,66 @@
+---
+id: request-body
+title: Request Body
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
+
+# Request Body
+
+The request body defines the parameters required to send a voice message via the IntelSend API.
+
+---
+
+## Parameters
+
+| Name               | Type      | Required | Sample Value                                                                 | Description                                                                 |
+|--------------------|-----------|----------|------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| `from`             | String    | ✅ Yes   | `1234567890`                                                                 | Assigned 10-digit Caller ID.                                               |
+| `sandboxMode`      | Boolean   | ❌ No    | `true`                                                                       | Default: `false`. If `true`, sends only to whitelisted numbers.           |
+| `useDraftTemplate` | Boolean   | ❌ No    | `false`                                                                      | Default: `false`. If `true`, sends using the draft template. Otherwise, sends latest published version. |
+| `templateId`       | Integer   | ✅ Yes   | `1..9999`                                                                    | Numeric template ID set via IntelSend admin portal.                        |
+| `parameters`       | Array     | ❌ No    | `[{"uid":"abc-123","to":"13233933379","name":"Deepak","address":"1234"}, {"uid":"xyz-123","to":"19495790525","name":"Jim","address":"1234"}]` | Array of key-value objects. Keys match template variables; values replace them. |
+| `sendAt`           | DateTime  | ❌ No    | `2024-11-01 11:00:00`                                                       | Format: `YYYY-MM-DD HH:mm:ss` in UTC. Default: current datetime.          |
+| `uid`              | String    | ✅ Yes   | `abc-123`                                                                    | Limit: 40 characters. Unique identifier for tracking.                      |
+| `programId`        | Integer   | ✅ Yes   | `12345`                                                                      | 6-digit program ID for bundling requests for reporting and billing.        |
+| `checkOptout`      | Boolean   | ❌ No    | `true`                                                                       | Default: `true`. If `false`, skips checking if the number has opted out.  |
+| `maxRetry`         | Integer   | ❌ No    | `0-3`                                                                        | Default: `0`. Number of retries if a voice message is not successfully left. |
+| `retryAfter`       | Integer   | ❌ No    | `5-60`                                                                       | Minutes to wait between retries to get Live/Machine result.                |
+| `repeatKey`        | Integer   | ❌ No    | `0-9,-13,-6`                                                                 | Default: `-13` or `#`. Key press to repeat the message.                   |
+| `maxRepeat`        | Integer   | ❌ No    | `0-5`                                                                        | Default: `1`. Maximum times the message can be repeated.                   |
+
+---
+
+## 🔎 Example JSON Payload
+
+<CodeBlock language="json">
+{`{
+  "from": "1234567890",
+  "sandboxMode": true,
+  "useDraftTemplate": false,
+  "templateId": 10,
+  "parameters": [
+    { "uid": "abc-123", "to": "13233933379", "name": "Deepak", "address": "1234" },
+    { "uid": "xyz-123", "to": "19495790525", "name": "Jim", "address": "1234" }
+  ],
+  "sendAt": "2024-11-01 11:00:00",
+  "uid": "abc-123",
+  "programId": 12345,
+  "checkOptout": true,
+  "maxRetry": 1,
+  "retryAfter": 15,
+  "repeatKey": -13,
+  "maxRepeat": 2
+}`}
+</CodeBlock>
+
+---
+
+<Admonition type="tip" title="Pro Tip 💡">
+Always provide a unique `uid` for each request to avoid duplication and track individual voice messages effectively.
+</Admonition>
+
+<Admonition type="info" title="See Also">
+Refer to the [Examples](./examples.md) section for full sample requests and responses.
+</Admonition>

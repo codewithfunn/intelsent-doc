@@ -1,0 +1,33 @@
+---
+id: endpoints
+title: API Endpoints
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
+
+# API Endpoints
+
+This section lists the available IntelSend API endpoints.
+
+---
+
+## Single SMS Endpoint
+
+### URL
+<CodeBlock language="bash">
+https://intelsend.com/api/v1/send/single_sms
+</CodeBlock>
+
+### Method
+<CodeBlock language="http">
+POST
+</CodeBlock>
+
+Refer to the [Request Body](./request-body.md) and [Response Body](./response-body.md) for detailed parameter and response information.
+
+---
+
+<Admonition type="info" title="Tip 💡">
+Use the `/single_sms` endpoint to send one SMS at a time. For bulk sending, refer to the respective bulk endpoint in the API documentation.
+</Admonition>

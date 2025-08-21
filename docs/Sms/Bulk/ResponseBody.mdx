@@ -1,0 +1,62 @@
+---
+id: response-body
+title: Response Body
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
+
+# Response Body
+
+The response body provides the status and details for each request sent via the IntelSend API.
+
+---
+
+## Parameters
+
+| Name         | Type    | Sample Value                                                                                                                                                                                                                                | Description                                                                                                                                                                                                                                                                                                                 |
+| ------------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `isid`       | String  | `123-abc….-679`                                                                                                                                                                                                                             | IntelSend ID: Unique UUID returned in all responses.                                                                                                                                                                                                                                                                        |
+| `parameters` | Array   | `[ { "uid": "abc-123", "to": "13233933379", "name": "Deepak", "address": "1234", "status": "QUEUED", "errorCode": 0 }, { "uid": "xyz-123", "to": "19495790525", "name": "Jim", "address": "1234", "status": "REJECTED", "errorCode": 2 } ]` | Array of objects with details. Each object represents an individual request and includes status and error code information. `QUEUED` and `errorCode: 0` indicate success. `REJECTED` with `errorCode > 0` indicates an error. Each `errorCode` corresponds to a specific error condition. |
+| `from`       | String  | `1234567890`                                                                                                                                                                                                                                | Assigned 10-digit caller ID or short code as in the request.                                                                                                                                                                                                                                                                |
+| `templateId` | String  | `1`                                                                                                                                                                                                                                         | Numeric template ID set via IntelSend admin portal. This value can also be a string for readability.                                                                                                                                                                                                                         |
+| `uid`        | String  | `abc-123`                                                                                                                                                                                                                                   | Unique identifier for tracking purposes. Each `uid` is inside the object to track individual requests.                                                                                                                                                                                                                      |
+| `programId`  | Integer | `12345`                                                                                                                                                                                                                                     | Numeric value (1-9999) used to bundle multiple requests under a single program for reporting and billing purposes.                                                                                                                                                                                                          |
+
+---
+
+## 🔎 Example JSON Response
+
+<CodeBlock language="json">
+{`{
+  "isid": "123-abc-456-789",
+  "parameters": [
+    {
+      "uid": "abc-123",
+      "to": "13233933379",
+      "name": "Deepak",
+      "address": "1234",
+      "status": "QUEUED",
+      "errorCode": 0
+    },
+    {
+      "uid": "xyz-123",
+      "to": "19495790525",
+      "name": "Jim",
+      "address": "1234",
+      "status": "REJECTED",
+      "errorCode": 2
+    }
+  ],
+  "from": "1234567890",
+  "templateId": "1",
+  "uid": "abc-123",
+  "programId": 12345
+}`}
+</CodeBlock>
+
+---
+
+<Admonition type="tip" title="Pro Tip 💡">
+Check the `status` and `errorCode` for each object inside `parameters` to handle success and failure cases programmatically.
+</Admonition>

@@ -1,0 +1,136 @@
+---
+sidebar_position: 1
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Admonition from '@theme/Admonition';
+
+# Create Token
+
+To integrate authorization using a **Bearer token** for API authentication, you can generate a token using the `Create Token` API.
+
+---
+
+## 📡 API Endpoint
+
+**POST** `https://intelsend.com/api/v1/auth/token`
+
+---
+
+## 📝 Request Headers
+
+| Name            | Value                           | Description                                                                 |
+|-----------------|---------------------------------|-----------------------------------------------------------------------------|
+| `Authorization` | `Basic client-id:client-secret` | Authorization credentials, where `client-id` and `client-secret` are provided. |
+| `Content-Type`  | `application/json`              | Indicates that the request body is in JSON format.                          |
+
+---
+
+## 📦 Request Body
+
+| Name         | Type     | Required | Example Value       | Description                                                        |
+|--------------|----------|----------|---------------------|--------------------------------------------------------------------|
+| `grant_type` | String   | ✅ Yes   | `client_credentials`| Must be set to `client_credentials`.                               |
+| `valid_hour` | Integer  | ❌ No    | `24`                | Token validity in hours. Default: `24` (1 day). Max: `168` (1 week). |
+
+---
+
+### Example Request
+
+<Tabs groupId="create-token-examples">
+  <TabItem value="curl" label="cURL" default>
+
+<CodeBlock language="bash">
+{`curl --location 'https://intelsend.com/api/v1/auth/token' \\
+--header 'Authorization: Basic client-id:client-secret' \\
+--header 'Content-Type: application/json' \\
+--data '{ "grant_type": "client_credentials", "valid_hour": 24 }'`}
+</CodeBlock>
+
+  </TabItem>
+
+  <TabItem value="nodejs" label="Node.js (Axios)">
+
+<CodeBlock language="js">
+{`const axios = require('axios');
+
+axios.post('https://intelsend.com/api/v1/auth/token', {
+  grant_type: "client_credentials",
+  valid_hour: 24
+}, {
+  headers: {
+    "Authorization": "Basic client-id:client-secret",
+    "Content-Type": "application/json"
+  }
+})
+.then(res => console.log(res.data))
+.catch(err => console.error(err));`}
+</CodeBlock>
+
+  </TabItem>
+</Tabs>
+
+---
+
+## 📥 Response Body
+
+| Name           | Type      | Example Value          | Description                                  |
+|----------------|-----------|------------------------|----------------------------------------------|
+| `access_token` | String    | `abc.....123`          | The token used for subsequent API calls.     |
+| `valid_till`   | Datetime  | `2024-11-12 10:00:00`  | Expiration datetime of the token (UTC).      |
+
+---
+
+### Example Response
+
+<CodeBlock language="json">
+{`{
+  "access_token": "abc.....123",
+  "valid_till": "2024-11-12 10:00:00"
+}`}
+</CodeBlock>
+
+---
+
+## 🚀 Usage in API Calls
+
+Include the generated `access_token` as a **Bearer token** in the `Authorization` header of all subsequent API requests.
+
+<Tabs groupId="usage-examples">
+  <TabItem value="curl" label="cURL" default>
+
+<CodeBlock language="bash">
+{`curl --location 'https://intelsend.com/api/v1/your-endpoint' \\
+--header 'Authorization: Bearer abc.....123' \\
+--header 'Content-Type: application/json'`}
+</CodeBlock>
+
+  </TabItem>
+
+  <TabItem value="nodejs" label="Node.js (Axios)">
+
+<CodeBlock language="js">
+{`axios.get('https://intelsend.com/api/v1/your-endpoint', {
+  headers: {
+    "Authorization": "Bearer abc.....123",
+    "Content-Type": "application/json"
+  }
+})
+.then(res => console.log(res.data))
+.catch(err => console.error(err));`}
+</CodeBlock>
+
+  </TabItem>
+</Tabs>
+
+---
+
+## 📝 Notes
+
+<Admonition type="info" title="Best Practices">
+- Keep your `client-id` and `client-secret` secure.  
+- Always use the `access_token` within its validity period (`valid_till`).  
+- If the token expires, call the same API to generate a new one.  
+</Admonition>

@@ -1,0 +1,95 @@
+---
+id: examples
+title: Examples
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+#  Examples
+
+This section shows request and response examples for the **IntelSend Email API**.
+
+---
+
+## 📤 Sample Email Request
+
+<Tabs>
+  <TabItem value="json" label="JSON" default>
+
+```json
+{
+  "to": "abc@gmail.com",
+  "from": "info@xyz.com",
+  "subject": "Email subject line",
+  "bodyText": "Hello User, This is a sample email body",
+  "bodyHtml": "<strong>Hello User</strong>,<p>This is a sample email body</p>",
+  "sendAt": "2024-11-01 11:00:00",
+  "uid": "abc-123",
+  "programId": 12345,
+  "checkDNC": true
+}
+```
+</TabItem> <TabItem value="curl" label="cURL">
+```bash
+curl -X POST "https://intelsend.com/api/v1/send/single_email" \
+  -H "authorization: Bearer v1_8pJc****SLLeC24" \
+  -H "content-type: application/json" \
+  -d '{
+    "to": "abc@gmail.com",
+    "from": "info@xyz.com",
+    "subject": "Email subject line",
+    "bodyText": "Hello User, This is a sample email body",
+    "bodyHtml": "<strong>Hello User</strong>,<p>This is a sample email body</p>",
+    "sendAt": "2024-11-01 11:00:00",
+    "uid": "abc-123",
+    "programId": 12345,
+    "checkDNC": true
+  }'
+```
+</TabItem> </Tabs>
+
+:::info Important
+
+sendAt must be in UTC format: YYYY-MM-DD HH:mm:ss.
+
+uid must be unique per request.
+
+programId groups multiple requests for reporting & billing.
+:::
+
+-----
+📥 Sample Email Response
+<Tabs> <TabItem value="json" label="JSON" default>
+```json
+{
+  "isid": "123-abc-456-xyz",
+  "status": "QUEUED",
+  "errorCode": 0,
+  "to": "abc@gmail.com",
+  "from": "info@xyz.com",
+  "uid": "abc-123",
+  "programId": 12345
+}
+```
+</TabItem> <TabItem value="error" label="Error Example">
+````json
+{
+  "isid": "123-err-456-xyz",
+  "status": "REJECTED",
+  "errorCode": 2,
+  "to": "abc@gmail.com",
+  "from": "info@xyz.com",
+  "uid": "abc-999",
+  "programId": 12345
+}
+````
+</TabItem> </Tabs>
+
+:::tip Success vs Error
+
+✅ status: "QUEUED" with errorCode: 0 → Request accepted successfully.
+
+❌ status: "REJECTED" with errorCode > 0 → Request failed, check Error Codes
+.
+:::

@@ -1,0 +1,36 @@
+---
+id: faq
+title: FAQ
+---
+
+import Admonition from '@theme/Admonition';
+
+#  Frequently Asked Questions (FAQ)
+
+### Q1: Can I send SMS without `sandboxMode`?
+
+Yes ✅  
+Set **`sandboxMode`** to `false` to send messages to production numbers.  
+When set to `true`, messages will only be sent in sandbox/testing mode.
+
+---
+
+### Q2: What is the maximum SMS character limit?
+
+- **Plain English text**: 600 characters  
+- **Unicode text**: 300 characters  
+
+<Admonition type="tip" title="Tip">
+If your text exceeds the limit, the system will automatically split it into multiple SMS segments.
+</Admonition>
+
+---
+
+### Q3: What is the default value of `checkOptOut`?
+
+The default value is **`true`**.  
+This ensures the system checks whether the recipient has opted out of communication before sending.  
+
+<Admonition type="warning" title="Important">
+If you set `checkOptOut` to `false`, messages may be sent to users who opted out, which could lead to compliance issues.
+</Admonition>

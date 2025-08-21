@@ -1,0 +1,35 @@
+---
+id: endpoints
+title: API Endpoints
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
+
+# API Endpoints
+
+This section lists the available IntelSend **Voice API** endpoints.
+
+---
+
+## Bulk Voice Endpoint
+
+### URL
+
+<CodeBlock language="bash">
+https://intelsend.com/api/v1/send/bulk_voice
+</CodeBlock>
+
+### Method
+
+<CodeBlock language="http">
+POST
+</CodeBlock>
+
+Refer to the [Request Body](./request-body.md) and [Response Body](./response-body.md) for detailed parameter and response information.
+
+---
+
+<Admonition type="info" title="Tip 💡">
+Use the `/bulk_voice` endpoint to send multiple voice messages in a single request. Each request handles multiple recipients with individual parameters.
+</Admonition>

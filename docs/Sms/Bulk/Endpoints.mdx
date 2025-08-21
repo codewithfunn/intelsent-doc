@@ -1,0 +1,45 @@
+---
+id: endpoints
+title: API Endpoints
+---
+
+import CodeBlock from "@theme/CodeBlock";
+import Admonition from "@theme/Admonition";
+
+# 🌐 Bulk SMS Endpoint
+
+IntelSend provides RESTful endpoints to send bulk SMS programmatically.
+:::info
+All endpoints require **Authentication Headers**.
+Refer to the [Authentication](./authentication.mdx) section before making requests.
+:::
+**URL**
+
+```bash
+https://intelsend.com/api/v1/send/bulk_sms
+```
+
+**Method**
+POST
+
+---
+
+## 📑 Example Request
+
+<CodeBlock language="bash">
+  {`curl -X POST "https://intelsend.com/api/v1/send/bulk_sms" \\
+  -H "authorization: Bearer v1_8pJc****SLLeC24" \\
+  -H "content-type: application/json" \\
+  -d '{
+        "from": "INTELSEND",
+        "to": ["+15551234567"],
+        "body": "Hello, this is a test SMS."
+      }'`}
+</CodeBlock>
+
+---
+
+<Admonition type="info" title="More Details">
+  Refer to the [Request Body](./RequestBody.md) and [Response
+  Body](./ResponseBody.md) for parameter details.
+</Admonition>

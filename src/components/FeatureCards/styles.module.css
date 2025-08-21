@@ -1,0 +1,35 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  align-items: center;
+  margin: 100px 0;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    flex-direction: column;
+  }
+}
+
+.buttons {
+  background-color: var(--theme-color-blue);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  gap: 0.5em;
+}
+.buttons:hover {
+  opacity: 0.8;
+}
+.buttons svg {
+  width: 1em;
+  height: 1em;
+  fill: white;
+}

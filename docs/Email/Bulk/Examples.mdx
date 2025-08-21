@@ -1,0 +1,75 @@
+---
+id: examples
+title: Examples
+---
+
+import CodeBlock from "@theme/CodeBlock";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Admonition from "@theme/Admonition";
+
+# Examples
+
+## Sample Email Request
+
+Send a bulk email using the **Bulk Email API**. You can customize:
+
+<Tabs>
+  <TabItem value="json" label="Json" default>
+```json
+{
+    "from": "info@xyz.com",
+    "paramenters": [
+        {
+            "uid": "abc-123",
+            "to": "abc@gmail.com",
+            "name": "Deepak",
+            "address": "1234"
+        },
+        {
+            "uid": "xyz-123",
+            "to": "xyz@outlook.com",
+            "name": "Jim",
+            "address": "1234"
+        }
+    ],
+    "sendAt": "",
+    "uid": "",
+    "programId": "",
+    "checkDNC":
+}
+```
+</TabItem>
+</Tabs>
+## Sample Email Response
+bulk email API response contains the status of each email sent, including any errors encountered.
+<Tabs>
+  <TabItem value="json" label="Json" default>
+  ```json
+{
+  "isid": "",
+  "parameters": [
+    {
+      "uid": "abc-123",
+      "to": "abc@gmail.com",
+      "name": "Deepak",
+      "address": "1234",
+      "staus": "QUEUED",
+      "errorCode": 0
+    },
+    {
+      "uid": "xyz-123",
+      "to": "xyz@outlook.com",
+      "name": "Jim",
+      "address": "1234",
+      "staus": "REJECTED",
+      "errorCode": 2
+    }
+  ],
+  "from": "info@xyz.com",
+  "uid": "",
+  "programId": ""
+}
+```
+</TabItem>
+</Tabs>

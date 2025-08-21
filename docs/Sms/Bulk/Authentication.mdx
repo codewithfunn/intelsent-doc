@@ -1,0 +1,40 @@
+---
+id: authentication
+title: Authentication
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
+
+# 🔐 Authentication
+
+All requests to the IntelSend API must be authenticated using a **Bearer Token** in the request header.  
+
+---
+
+## 📑 Required Headers
+
+| Name              | Value                       | Description                       |
+| ----------------- | --------------------------- | --------------------------------- |
+| **authorization** | `Bearer v1_8pJc****SLLeC24` | Use the provided bearer token.    |
+| **content-type**  | `application/json`          | Specify JSON as the content type. |
+
+---
+
+## 🛠️ Example Request
+
+<CodeBlock language="bash">
+{`curl -X POST "https://intelsend.com/api/v1/send/single_email" \\
+  -H "authorization: Bearer v1_8pJc****SLLeC24" \\
+  -H "content-type: application/json" \\
+  -d '{
+        "from": "info@intelsend.com",
+        "to": "abc@gmail.com",
+      }'`}
+</CodeBlock>
+
+---
+
+<Admonition type="tip" title="Tip">
+Always keep your Bearer Token **secure**. Do not share it publicly or expose it in client-side code.
+</Admonition>

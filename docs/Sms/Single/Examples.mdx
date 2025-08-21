@@ -1,0 +1,62 @@
+---
+id: examples
+title: Examples
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
+
+# Examples
+
+This section provides sample requests and responses for the IntelSend API.
+
+---
+
+## Sample Request
+
+<CodeBlock language="json">
+{`{
+  "to": "13233933379",
+  "from": "1234567890",
+  "body": "Hi User, This is test message sent from Intelsend.com API.",
+  "sendAt": "",
+  "uid": "abc-123",
+  "programId": 12345,
+  "checkOptOut": true
+}`}
+</CodeBlock>
+
+---
+
+## Sample Response
+
+<CodeBlock language="json">
+{`{
+  "isid": "",
+  "status": "QUEUED",
+  "errorCode": 0,
+  "to": "13233933379",
+  "from": "1234567890",
+  "uid": "abc-123",
+  "programId": 12345
+}`}
+</CodeBlock>
+
+---
+
+## Error Codes
+
+| Code | Description               |
+| ---- | ------------------------- |
+| 0    | No error.                 |
+| 1    | Invalid `to` number.      |
+| 2    | Invalid `from` number.    |
+| 3    | Missing required fields.  |
+| 4    | Exceeded character limit. |
+| 5    | Invalid `programId`.      |
+
+---
+
+<Admonition type="tip" title="Pro Tip 💡">
+Always check the `status` and `errorCode` in the response to handle success and failure cases in your application.
+</Admonition>

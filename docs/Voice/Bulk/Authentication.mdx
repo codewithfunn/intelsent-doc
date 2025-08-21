@@ -1,0 +1,35 @@
+---
+id: authentication
+title: Authentication
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
+
+# Authentication
+
+To access the IntelSend API, you must include an **Authorization header** in your request.
+
+---
+
+## Headers
+
+| Name            | Value                       | Description                                       |
+| --------------- | --------------------------- | ------------------------------------------------- |
+| `authorization` | Bearer `v1_8pJc****SLLeC24` | Authorization bearer token passed in the header. |
+| `content-type`  | `application/json`          | Type of content passed in the body (JSON format). |
+
+---
+
+## 🔎 Example Request Header
+
+<CodeBlock language="http">
+Authorization: Bearer v1_8pJc****SLLeC24
+Content-Type: application/json
+</CodeBlock>
+
+---
+
+<Admonition type="tip" title="Pro Tip 💡">
+Ensure your bearer token is **valid and not expired** before making any API calls. Tokens are required for all endpoints.
+</Admonition>

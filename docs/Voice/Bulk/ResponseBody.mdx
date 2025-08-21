@@ -1,0 +1,60 @@
+---
+id: response-body
+title: Response Body
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
+
+# Response Body
+
+The response body provides details for each voice message request sent via the IntelSend API.
+
+---
+
+## Parameters
+
+| Name         | Type    | Sample Value                                                                                                                                                                                                                                                                           | Description                                                                                                                                    |
+| ------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `isid`       | String  | `123-abc….-679`                                                                                                                                                                                                                                                                       | IntelSend ID. Unique UUID returned in all responses.                                                                                           |
+| `parameters` | Array   | `[ { "uid": "abc-123", "to": "13233933379", "name": "Deepak", "address": "1234", "status": "QUEUED", "errorCode": 0 }, { "uid": "xyz-123", "to": "19495790525", "name": "Jim", "address": "1234", "status": "REJECTED", "errorCode": 2 } ]` | Array of objects containing details for each request. `status` can be `QUEUED` (accepted) or `REJECTED` (contains errors). Each object includes `errorCode`. |
+| `from`       | String  | `1234567890`                                                                                                                                                                                                                                                                           | Same as in request. Assigned 10-digit Caller ID.                                                                                               |
+| `uid`        | String  | `abc-123`                                                                                                                                                                                                                                                                               | Same as in request. Unique identifier used for tracking.                                                                                       |
+| `programId`  | Integer | `12345`                                                                                                                                                                                                                                                                                 | Same as in request. Used to bundle multiple requests for reporting and billing purposes.                                                       |
+
+---
+
+## 🔎 Example JSON Response
+
+<CodeBlock language="json">
+{`{
+  "isid": "123-abc-456-789",
+  "parameters": [
+    {
+      "uid": "abc-123",
+      "to": "13233933379",
+      "name": "Deepak",
+      "address": "1234",
+      "status": "QUEUED",
+      "errorCode": 0
+    },
+    {
+      "uid": "xyz-123",
+      "to": "19495790525",
+      "name": "Jim",
+      "address": "1234",
+      "status": "REJECTED",
+      "errorCode": 2
+    }
+  ],
+  "from": "1234567890",
+  "uid": "abc-123",
+  "programId": 12345
+}`}
+</CodeBlock>
+
+---
+
+<Admonition type="tip" title="Pro Tip 💡">
+Always check the `status` and `errorCode` for each parameter object to handle success and failure cases programmatically.
+</Admonition>

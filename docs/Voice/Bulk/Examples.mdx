@@ -1,0 +1,82 @@
+---
+id: examples
+title: Examples
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
+
+# Examples
+
+This section provides sample requests and responses for **Voice API** calls via IntelSend.
+
+---
+
+## Sample Voice Request
+
+<CodeBlock language="json">
+{`{
+  "from": "1234567890",
+  "templateId": 10,
+  "parameters": [
+    {
+      "uid": "abc-123",
+      "to": "13233933379",
+      "name": "Deepak",
+      "address": "1234"
+    },
+    {
+      "uid": "xyz-123",
+      "to": "19495790525",
+      "name": "Jim",
+      "address": "1234"
+    }
+  ],
+  "sendAt": "",
+  "uid": "",
+  "programId": "",
+  "checkDNC": true,
+  "maxRetry": 1,
+  "retryAfter": 15,
+  "repeatKey": -13,
+  "maxRepeat": 2
+}`}
+</CodeBlock>
+
+---
+
+## Sample Voice Response
+
+<CodeBlock language="json">
+{`{
+  "isid": "",
+  "templateId": 10,
+  "parameters": [
+    {
+      "uid": "abc-123",
+      "to": "13233933379",
+      "name": "Deepak",
+      "address": "1234",
+      "status": "QUEUED",
+      "errorCode": 0
+    },
+    {
+      "uid": "xyz-123",
+      "to": "19495790525",
+      "name": "Jim",
+      "address": "1234",
+      "status": "REJECTED",
+      "errorCode": 2
+    }
+  ],
+  "from": "1234567890",
+  "uid": "",
+  "programId": ""
+}`}
+</CodeBlock>
+
+---
+
+<Admonition type="tip" title="Pro Tip 💡">
+Always check the `status` and `errorCode` fields for each recipient to handle success and failure programmatically. Correct spelling for `status` is important (`status`, not `staus`).
+</Admonition>

@@ -1,0 +1,54 @@
+---
+id: examples
+title: Examples
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
+
+# Examples
+
+This section provides sample requests and responses for **Voice API** calls via IntelSend.
+
+---
+
+## Sample Voice Request
+
+<CodeBlock language="json">
+{`{
+  "to": "13233933379",
+  "from": "1234567890",
+  "liveMessage": "Hi User, This is a message sent from Intelsend.com API for a voice call that will be converted using text-to-speech. Press pound to repeat.",
+  "vmMessage": "Hi User, This is a message sent from Intelsend.com API for a voice call that will be converted using text-to-speech.",
+  "sendAt": "",
+  "uid": "",
+  "programId": "",
+  "checkDNC": true,
+  "maxRetry": 1,
+  "retryAfter": 15,
+  "repeatKey": -13,
+  "maxRepeat": 2
+}`}
+</CodeBlock>
+
+---
+
+## Sample Voice Response
+
+<CodeBlock language="json">
+{`{
+  "isid": "",
+  "status": "QUEUED",
+  "errorCode": 0,
+  "to": "13233933379",
+  "from": "1234567890",
+  "uid": "",
+  "programId": ""
+}`}
+</CodeBlock>
+
+---
+
+<Admonition type="tip" title="Pro Tip 💡">
+Always check the `status` and `errorCode` fields to handle success and failure programmatically. Use the `uid` to track each request individually.
+</Admonition>

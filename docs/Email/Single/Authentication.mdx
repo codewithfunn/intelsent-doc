@@ -1,0 +1,70 @@
+---
+id: authentication
+title: Authentication
+---
+
+# Authentication
+
+:::tip
+All requests to the IntelSend API must be authenticated using a **Bearer Token** in the request headers.  
+Make sure you generate a valid token before making API calls.
+:::
+
+##  Required Headers
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs>
+  <TabItem value="table" label="Headers Table" default>
+
+| Name            | Value                       | Description                                      |
+| --------------- | --------------------------- | ------------------------------------------------ |
+| `authorization` | Bearer `v1_8pJc****SLLeC24` | Authorization Bearer token passed in the header. |
+| `content-type`  | `application/json`          | Content type of the request body (always JSON).  |
+
+  </TabItem>
+
+  <TabItem value="curl" label="cURL Example">
+
+```bash
+curl -X POST "https://intelsend.com/api/v1/send/bulk_email" \
+  -H "authorization: Bearer v1_8pJc****SLLeC24" \
+  -H "content-type: application/json" \
+  -d '{
+    "uid": "abc-123",
+    "from": "info@xyz.com",
+    "programId": 12345,
+    "parameters": [{
+      "to": "abc@gmail.com",
+      "name": "Deepak"
+    }]
+  }'
+```
+
+</TabItem> <TabItem value="js" label="JavaScript Example">
+```javascript
+const response = await fetch("https://intelsend.com/api/v1/send/bulk_email", {
+  method: "POST",
+  headers: {
+    authorization: "Bearer v1_8pJc****SLLeC24",
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    uid: "abc-123",
+    from: "info@xyz.com",
+    programId: 12345,
+    parameters: [
+      { to: "abc@gmail.com", name: "Deepak" }
+    ]
+  }),
+});
+
+const data = await response.json();
+console.log(data);
+
+```
+
+  </TabItem>
+</Tabs>
+```
