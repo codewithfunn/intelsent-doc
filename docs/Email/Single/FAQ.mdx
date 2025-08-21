@@ -1,36 +1,34 @@
 ---
 id: faq
-title: Frequently Asked Questions
+title: FAQ
 ---
 
-#  Frequently Asked Questions (FAQ)
+import Admonition from '@theme/Admonition';
 
-Here are answers to some of the most commonly asked questions about using the IntelSend API:
+# FAQ
 
----
-
-<details>
-  <summary><strong>Q1: Can I send SMS without <code>sandboxMode</code>?</strong></summary>
-  <div>
-    ✅ Yes, set <code>sandboxMode</code> to <code>false</code> to send messages to production numbers.
-  </div>
-</details>
+This section answers common questions about using the IntelSend API.
 
 ---
 
-<details>
-  <summary><strong>Q2: What is the maximum SMS character limit?</strong></summary>
-  <div>
-    - **600 characters** for plain English text.  
-    - **300 characters** for Unicode text.
-  </div>
-</details>
+### Q1: Can I send Email without `sandboxMode`?
+
+<Admonition type="info" title="Answer">
+Yes, set `sandboxMode` to `false` to send messages to production numbers.
+</Admonition>
 
 ---
 
-<details>
-  <summary><strong>Q3: What is the default value of <code>checkOptOut</code>?</strong></summary>
-  <div>
-    The default value is <code>true</code>.
-  </div>
-</details>
+### Q2: What is the maximum Email character limit?
+
+<Admonition type="info" title="Answer">
+600 characters for plain English, 300 characters for Unicode text.
+</Admonition>
+
+---
+
+### Q3: What is the default value of `checkOptOut`?
+
+<Admonition type="info" title="Answer">
+The default value is `true`.
+</Admonition>
