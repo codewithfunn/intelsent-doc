@@ -7,7 +7,7 @@ import NextIcon from "/icons/next.svg";
 
 const FeatureList = [
   {
-    title: "Campaign Voice API",
+    title: "Voice API",
     Svg: require("@site/static/img/voice-api.jpg").default,
     description: (
       <p>
@@ -28,10 +28,10 @@ const FeatureList = [
         quality calling experience.
       </p>
     ),
-    route: "/docs/voice-api/introduction",
+    route: "/docs/category/voice-api",
   },
   {
-    title: "Campaign Messaging API",
+    title: "Messaging API",
     Svg: require("@site/static/img/sms-api.jpg").default,
     description: (
       <p>
@@ -44,10 +44,10 @@ const FeatureList = [
         data.
       </p>
     ),
-    route: "/docs/messaging-api/introduction",
+    route: "/docs/category/sms-api",
   },
   {
-    title: "Campaign Email API",
+    title: "Email API",
     Svg: require("@site/static/img/email-api.jpg").default,
     description: (
       <p>
@@ -60,7 +60,7 @@ const FeatureList = [
         follow-ups — all from our API or Customer Portal.
       </p>
     ),
-    route: "/docs/fax-api/introduction",
+    route: "/docs/category/email-api",
   },
 ];
 
